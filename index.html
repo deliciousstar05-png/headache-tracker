@@ -463,7 +463,7 @@ function initGoogleAuth() {
         client_id: CLIENT_ID,
         scope: SCOPES,
         callback: async (resp) => {
-          if (resp.error) { showToast('ログイン失敗'); return; }
+          if (resp.error || !resp.access_token) { return; }
           accessToken = resp.access_token;
           driveFileId = null;
           try {
